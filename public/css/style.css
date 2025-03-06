@@ -104,6 +104,21 @@ body {
 .edit-btn{
     background-color: #fe424d !important;
     border: none !important;
+    height: 37px !important;
+    width: 80px !important;
+}
+
+.edit-btn:hover{
+    background-color: #d41824 !important;
+}
+
+.delete-btn{
+    background-color: grey !important;
+    border: none !important;
+}
+
+.delete-btn:hover{
+    background-color: #2e2a2a !important;
 }
 /* show page */
 .show-img{
