@@ -1,0 +1,75 @@
+<% layout("/layouts/boilerplate")%>
+<body>
+    <br/>
+    <h3 style="text-align: center; font-weight: 600;">Create Listing</h3>
+    <div class="row">
+        <div class="col-8  offset-2">
+    <form method="POST" action="/listings" novalidate class="needs-validation">
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input name="listing[name]" placeholder="Enter Name" type="text" class="form-control" required>
+            <div class="invalid-feedback">
+                Enter Valid Name
+              </div>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea name="listing[description]" placeholder="Enter the Description" class="form-control" required></textarea>
+            <div class="invalid-feedback">
+                Enter Short Description
+              </div>
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input name="listing[price]" placeholder="Enter Price"  class="form-control" required>
+            <div class="invalid-feedback">
+                Enter Price
+              </div>
+        </div>
+       <div class="mb-3">
+             <label for="image" class="form-label">Image</label>
+             <input name="listing[image]" placeholder="Enter Image URL/Link" type="text" class="form-control">
+             
+       </div>
+       <div class="row">
+        <div class="mb-3 col-md-4">
+            <label for="category" class="form-label">Category</label>
+            <input name="listing[category]" placeholder="Enter Men OR Women" type="text" class="form-control" required>
+            <div class="invalid-feedback">
+                Enter Category
+              </div>
+       </div>
+       <div class="mb-3 col-md-8">
+            <label for="subCategory" class="form-label">SubCategory</label>
+            <input name="listing[subCategory]" placeholder="Enter SubCategory" type="text" class="form-control" required>
+            <div class="invalid-feedback">
+                Enter SubCategory
+              </div>
+       </div>
+       </div>
+       
+       <div class="mb-3">
+            <label for="date" class="form-label">Date</label>
+            <input name="listing[date]" placeholder="Enter Date" type="date" class="form-control" required>
+            <div class="invalid-feedback">
+                Select Date
+              </div>
+       </div>
+        <div class="mb-3">
+            <label for="sizes" class="form-label">Sizes</label>
+            <input name="listing[sizes]" placeholder="Sizes S, M, L, XL" type="text" class="form-control" required>
+            <div class="invalid-feedback">
+                Enter Sizes
+              </div>
+        </div>
+        <br/>
+        <button class="btn btn-dark all-btn mb-3">Add</button>
+        <br/>
+
+
+    </form>
+</div>
+</div>
+    
+</body>
+</html>

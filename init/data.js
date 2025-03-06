@@ -1,0 +1,48 @@
+const sampleListings = [{
+    name: "Enigma Black Baggy Fit Jeans",
+    description: "Enigma Black Baggy Fit Jeans",
+    price: 999,
+    image: "https://cdn.shopify.com/s/files/1/0420/7073/7058/files/4MSD3615-0129.jpg?v=1692433276&quality=20",
+    category: "men",
+    subCategory: "pant",
+    sizes: ["S", "M", "L", "XL"],
+    date: new Date(),
+},{
+    name: "Core Lab Red Oversized Fit T-Shirt",
+    description: "Core Lab Red Oversized Fit T-Shirt",
+    price: 799,
+    image: "https://cdn.shopify.com/s/files/1/0420/7073/7058/files/b7f04c770aa14da70cd0aa99ec56d34b.jpg?v=1735046156&quality=50",
+    category: "men",
+    subCategory: "tshirt",
+    sizes: ["S", "M", "L", "XL"],
+    date: new Date(),
+},{
+    name: "Eternal Life Cream Printed Oversized Fit T-Shirt",
+    description: "Eternal Life Cream Printed Oversized Fit T-Shirt",
+    price: 1799,
+    image: "https://cdn.shopify.com/s/files/1/0420/7073/7058/files/c0e0e9ff244942b0e49de0baa9e34949.jpg?v=1733997090&quality=50",
+    category: "men",
+    subCategory: "tshirt",
+    sizes: ["S", "M", "L", "XL"],
+    date: new Date(),
+},{
+    name: "Black Printed Oversized Fit T-Shirt",
+    description: "Black Printed Oversized Fit T-Shirt",
+    price: 1299,
+    image: "https://cdn.shopify.com/s/files/1/0420/7073/7058/files/a68f22316ffbb638a6313fb9515455cc.jpg?v=1733911407&quality=50",
+    category: "men",
+    subCategory: "tshirt",
+    sizes: ["S", "M", "L", "XL"],
+    date: new Date(),
+},{
+    name: "Brown Textured Slim Fit Shirt",
+    description: "Brown Textured Slim Fit Shirt",
+    price: 1199,
+    image: "https://cdn.shopify.com/s/files/1/0420/7073/7058/files/a68f22316ffbb638a6313fb9515455cc.jpg?v=1733911407&quality=50",
+    category: "men",
+    subCategory: "shirt", 
+    sizes: ["S", "M", "L", "XL"],
+    date: new Date(),
+}
+];
+module.exports = { data: sampleListings};
