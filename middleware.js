@@ -1,4 +1,5 @@
 const Listing = require("./models/listing");
+const Review = require("./models/review");
 const {listingSchema,reviewSchema} = require("./schema.js");
 const ExpressError = require("./utils/ExpressError.js");
 
@@ -56,3 +57,14 @@ module.exports.validateReview = (req, res, next)=>{
         next();
     }
 };
+
+
+module.exports.isReviewAuther = async(req, res, next)=>{
+    let {id, reviewId} = req.params;
+    let review = await Review.findById(reviewId);
+    if(!review.author.equals(res.locals.currUser._id)){
+        req.flash("error", "You ara not the Auther of this Review!");
+        return res.redirect(`/listings/${id}`);
+    }
+    next();
+}
