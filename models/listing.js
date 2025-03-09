@@ -5,11 +5,8 @@ const listingSchema = new mongoose.Schema({
     description: { type: String, required: true },
     price: { type: Number, required: true },
     image:{
-        type: String,
-        default: "https://images.pexels.com/photos/996329/pexels-photo-996329.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        set:(v)=>
-        v === ""
-        ? "https://images.pexels.com/photos/996329/pexels-photo-996329.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" : v,
+        url: String,
+        filename: String,
     },
     category: { type: String, required: true },
     subCategory: { type: String, required: true },
