@@ -8,7 +8,10 @@ const controllers = require("../controllers/listings.js");
 
 
 //index route
-router.get("/",wrapAsync(controllers.index));
+//create route
+router.route("/")
+.get(wrapAsync(controllers.index))
+.post(isLoggedIn,validateListing,wrapAsync(controllers.createListing));
 
 
 //new route
@@ -16,23 +19,16 @@ router.get("/new",isLoggedIn,controllers.renderNewForm);
 
 
 //read,show route
-router.get("/:id",wrapAsync(controllers.showListing ));
-
-
-//create route
-router.post("/",isLoggedIn,validateListing,wrapAsync(controllers.createListing));
-
+//update route
+//Delete route
+router.route("/:id")
+.get(wrapAsync(controllers.showListing ))
+.put(isLoggedIn,isOwner, validateListing,wrapAsync(controllers.updateListing))
+.delete(isLoggedIn,isOwner, wrapAsync(controllers.destroyRoute));
 
 
 //edit route
 router.get("/:id/edit",isLoggedIn,isOwner,controllers.renderEditForm);
-
-//update route
-router.put("/:id",isLoggedIn,isOwner, validateListing,wrapAsync(controllers.updateListing));
-
-
-//Delete route
-router.delete("/:id",isLoggedIn,isOwner, wrapAsync(controllers.destroyRoute));
 
 
 module.exports = router;
