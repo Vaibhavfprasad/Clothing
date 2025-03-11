@@ -6,6 +6,11 @@ const userSchema = new mongoose.Schema({
     email:{
         type: String, 
         required: true,
+    },
+    admin:{
+        type: Boolean,
+        require: true,
+        default: false,
     }
 });
 

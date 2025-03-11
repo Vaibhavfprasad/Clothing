@@ -15,6 +15,19 @@ router.route("/")
 .get(wrapAsync(controllers.index))
 .post(isLoggedIn,upload.single("listing[image]"),validateListing,wrapAsync(controllers.createListing));
 
+//Mens Collection Route
+router.get("/menscollection",async(req,res)=>{
+    const allListings = await Listing.find({category: "Men"});
+    res.render("collections/mens.ejs",{allListings});
+})
+
+
+//Women Collections Route
+router.get("/womenscollection",async(req,res)=>{
+    const allListings = await Listing.find({category: "Women"});
+    res.render("collections/womens.ejs",{allListings});
+});
+
 
 //new route
 router.get("/new",isLoggedIn,controllers.renderNewForm);

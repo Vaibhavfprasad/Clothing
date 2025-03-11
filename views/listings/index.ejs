@@ -1,11 +1,44 @@
 <% layout("/layouts/boilerplate")%>
-
-    <h3>all listings</h3>
+<style>
+  #filters{
+       display: flex;
+       flex-wrap: wrap;
+       align-items: center;
+       margin-left: 60rem;
+     }
+   .filter{
+       text-align: center;
+       margin-top: 2rem;
+       margin-right: 2rem;
+       opacity: 0.7;
+     }
+   .filter:hover{
+       opacity:1;
+       cursor: pointer;
+     }
+   .tax-info{
+       display: none;
+     }
+ 
+   .tax-toggle{
+       border: solid black 1px;
+       border-radius: 1rem;
+       height: 3rem;
+       padding: 1rem;
+       margin-left: 50rem;
+       display: flex;
+       align-items: center;
+     }
+ </style>
+    
+    
+    
+   
     <!-- <form method="GET" action="/listings/new">
         <button>create new Listing</button>
     </form> -->
 
-    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-5">
         <%for(let listing of allListings){%>
         <a href="/listings/<%=listing._id%>" class="listing-link">
         <div class="card listing-card col" >
