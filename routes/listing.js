@@ -13,7 +13,7 @@ const upload = multer({ storage });
 //create route
 router.route("/")
 .get(wrapAsync(controllers.index))
-.post(isLoggedIn,upload.single("listing[image]"),validateListing,wrapAsync(controllers.createListing));
+.post(isLoggedIn,upload.array("listing[images]",5),validateListing,wrapAsync(controllers.createListing));
 
 //Mens Collection Route
 router.get("/menscollection",async(req,res)=>{
@@ -38,7 +38,7 @@ router.get("/new",isLoggedIn,controllers.renderNewForm);
 //Delete route
 router.route("/:id")
 .get(wrapAsync(controllers.showListing ))
-.put(isLoggedIn,isOwner,upload.single("listing[image]"),validateListing,wrapAsync(controllers.updateListing))
+.put(isLoggedIn,isOwner,upload.array("listing[images]",4),validateListing,wrapAsync(controllers.updateListing))
 .delete(isLoggedIn,isOwner, wrapAsync(controllers.destroyRoute));
 
 

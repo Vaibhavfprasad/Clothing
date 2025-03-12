@@ -4,10 +4,10 @@ const listingSchema = new mongoose.Schema({
     name: { type: String, required: true },
     description: { type: String, required: true },
     price: { type: Number, required: true },
-    image:{
+    images:[{
         url: String,
         filename: String,
-    },
+    }],
     category: { type: String, required: true },
     subCategory: { type: String, required: true },
     date: { type: Date, default: Date.now(), },
@@ -23,6 +23,8 @@ const listingSchema = new mongoose.Schema({
     },
 });
 
+
+// Middleware to delete associated reviews when a listing is deleted
 listingSchema.post("findOneAndDelete",async (listing) =>{
     if(listing){
         await Review.deleteMany({_id:{$in: listing.reviews}});

@@ -65,8 +65,10 @@ body {
 
 .card-img-top-show{
     border-radius: 1rem !important;
-    width: 100%;
-    object-fit: cover !important;
+    width: 1000%;
+    height: 600px !important;
+    max-height: 800px !important;
+    object-fit: contain !important;
 }
 
 .card-body{
@@ -126,6 +128,10 @@ body {
 
 .delete-btn:hover{
     background-color: #2e2a2a !important;
+}
+
+.slide-btn{
+    color: rgb(48, 45, 45) !important;
 }
 /* show page */
 .show-img{
