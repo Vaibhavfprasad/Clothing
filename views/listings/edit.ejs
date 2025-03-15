@@ -60,8 +60,20 @@
               </div>
         </div>
         <div class="mb-3">
-            <label for="sizes" class="form-label">Sizes</label>
-            <input name="listing[sizes]" value="<%=listing.sizes%>" type="text" class="form-control" required>
+            <!-- <label for="sizes" class="form-label">Sizes</label>
+            <input name="listing[sizes]" value="<%=//listing.sizes%>" type="text" class="form-control" required> -->
+            <div class="mb-3">
+                <label class="form-label">Sizes</label><br>
+                <div id="size-buttons">
+                    <button type="button" class="btn size-btn" data-size="S">S</button>
+                    <button type="button" class="btn size-btn" data-size="M">M</button>
+                    <button type="button" class="btn size-btn" data-size="L">L</button>
+                    <button type="button" class="btn size-btn" data-size="XL">XL</button>
+                </div>
+                <input type="hidden" name="listing[sizes]" id="size-input" value="<%= JSON.stringify(listing.sizes) %>" required>
+                <div class="invalid-feedback">Select at least one size</div>
+            </div>
+            
             <div class="invalid-feedback">
                 Enter Sizes
               </div>
@@ -72,3 +84,36 @@
 </div> 
 </div>
 <script src="/js/script.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let selectedSizes = JSON.parse(document.getElementById("size-input").value || "[]");
+        const sizeButtons = document.querySelectorAll(".size-btn");
+        const sizeInput = document.getElementById("size-input");
+    
+        sizeButtons.forEach(button => {
+            let size = button.getAttribute("data-size");
+    
+            // Highlight pre-selected sizes
+            if (selectedSizes.includes(size)) {
+                button.classList.add("btn-dark");
+            } else {
+                button.classList.add("btn-outline-dark");
+            }
+    
+            // Toggle selection
+            button.addEventListener("click", function () {
+                if (selectedSizes.includes(size)) {
+                    selectedSizes = selectedSizes.filter(s => s !== size);
+                    this.classList.remove("btn-dark");
+                    this.classList.add("btn-outline-dark");
+                } else {
+                    selectedSizes.push(size);
+                    this.classList.add("btn-dark");
+                    this.classList.remove("btn-outline-dark");
+                }
+                sizeInput.value = JSON.stringify(selectedSizes);
+            });
+        });
+    });
+    </script>
+    

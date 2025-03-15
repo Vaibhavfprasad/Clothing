@@ -10,17 +10,17 @@
             <div class="carousel-inner">
               <% listing.images.forEach((image, index) => { %>
                 <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
-                  <img src="<%= image.url %>" class="d-block w-100 card-img-top-show" alt="Listing Image" style="height: 20rem;">
+                  <img src="<%= image.url %>" class="d-block card-img-top-show" alt="Listing Image" style="height: 20rem;">
                 </div>
               <% }); %>
             </div>
         
             <!-- Carousel Controls -->
             <button class="carousel-control-prev slide-btn" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="carousel-control-prev-icon slide-btn" aria-hidden="true"></span>
             </button>
             <button class="carousel-control-next slide-btn" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="carousel-control-next-icon slide-btn" aria-hidden="true"></span>
             </button>
           </div>
         <% } else { %>
@@ -31,13 +31,17 @@
         <div class="card-body">
           <p class="card-text" >
             <br/>
+            <% if(currUser && currUser.admin==true){%>
             <p>Owned By : <i><%=listing.owner.username%></i></p>
+            <%}%>
             <p><%=listing.description%></p>
             <p>&#8377;<%=listing.price.toLocaleString("en-IN")%></p>
             <p><%=listing.category%></p>
             <p><%=listing.subCategory%></p>
+            <% if(currUser && currUser.admin==true){%>
             <p><%=listing.date%></p>
-            <p><%=listing.sizes%></p>
+            <%}%>
+            <p>Sizes available : <%=listing.sizes%></p>
           </p>
         </div>
       </div>

@@ -31,13 +31,41 @@ module.exports.showListing = async (req, res)=>{
 // };
 
 
+// module.exports.createListing = async (req, res) => {
+//     try {
+//         let images = req.files.map(file => ({ url: file.path, filename: file.filename })); // Handle multiple images
+
+//         const newListing = new Listing({
+//             ...req.body.listing,
+//             images: images, // Store multiple images in the database
+//             owner: req.user._id
+//         });
+
+//         await newListing.save();
+//         req.flash("success", "New Listing Created!");
+//         res.redirect("/listings");
+//     } catch (error) {
+//         console.error(error);
+//         req.flash("error", "Something went wrong!");
+//         res.redirect("/listings/new");
+//     }
+// };
+
+
+
 module.exports.createListing = async (req, res) => {
     try {
         let images = req.files.map(file => ({ url: file.path, filename: file.filename })); // Handle multiple images
 
+        let sizes = req.body.listing.sizes; 
+        if (typeof sizes === "string") {
+            sizes = JSON.parse(sizes); // Convert JSON string to an array
+        }
+
         const newListing = new Listing({
             ...req.body.listing,
-            images: images, // Store multiple images in the database
+            sizes, // Store sizes correctly as an array
+            images, // Store multiple images
             owner: req.user._id
         });
 
@@ -50,6 +78,7 @@ module.exports.createListing = async (req, res) => {
         res.redirect("/listings/new");
     }
 };
+
 
 
 
@@ -112,21 +141,58 @@ module.exports.renderEditForm = async (req, res)=>{
 // };
 
 
+// module.exports.updateListing = async (req, res) => {
+//     try {
+//         const { id } = req.params;
+//         const listing = await Listing.findById(id);
+//         if (!listing) return res.redirect("/listings");
+
+//         // If new images are uploaded, replace old ones in the database
+//         if (req.files?.length) {
+//             listing.images = req.files.map(({ path, filename }) => ({ url: path, filename }));
+//         }
+
+//         // Save updated listing
+//         await listing.save();
+
+//         req.flash("success", "Listing updated with new images!");
+//         res.redirect(`/listings/${id}`);
+//     } catch (error) {
+//         console.error(error);
+//         req.flash("error", "Update failed.");
+//         res.redirect(`/listings/${id}/edit`);
+//     }
+// };
+
+
 module.exports.updateListing = async (req, res) => {
     try {
         const { id } = req.params;
-        const listing = await Listing.findById(id);
-        if (!listing) return res.redirect("/listings");
+        let { sizes } = req.body.listing;
 
-        // If new images are uploaded, replace old ones in the database
+        // Ensure sizes is stored as an array
+        if (typeof sizes === "string") {
+            sizes = JSON.parse(sizes);
+        }
+
+        const listing = await Listing.findByIdAndUpdate(id, {
+            ...req.body.listing, // Update all other fields
+            sizes, // Ensure sizes is updated correctly
+        });
+
+        if (!listing) {
+            req.flash("error", "Listing not found.");
+            return res.redirect("/listings");
+        }
+
+        // If new images are uploaded, replace old ones
         if (req.files?.length) {
             listing.images = req.files.map(({ path, filename }) => ({ url: path, filename }));
         }
 
-        // Save updated listing
-        await listing.save();
+        await listing.save(); // Save the changes
 
-        req.flash("success", "Listing updated with new images!");
+        req.flash("success", "Listing updated successfully!");
         res.redirect(`/listings/${id}`);
     } catch (error) {
         console.error(error);
