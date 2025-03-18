@@ -1,0 +1,53 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+    <h3 class="text-center">Your Cart</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Size</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (cart && cart.items.length > 0) { %>
+                <% cart.items.forEach(item => { %>
+                    <% if (item.listing) { %>  <!-- Check if listing exists -->
+                        <tr>
+                            <td><img src="<%= item.listing.images[0].url %>" width="50"></td>
+                            <td><%= item.listing.name %></td>
+                            <td><%= item.size %></td>
+                            <td><%= item.quantity %></td>
+                            <td>&#8377;<%= item.quantity * item.listing.price %></td>
+                            <td>
+                                <form action="/cart/remove/<%= item._id %>" method="POST">
+                                    <button class="btn btn-danger btn-sm">Remove</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="6" class="text-danger text-center">This item is no longer available.</td>
+                        </tr>
+                    <% } %>
+                <% }) %>
+            <% } else { %>
+                <tr>
+                    <td colspan="6" class="text-center">Your cart is empty.</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+
+    <h4 class="text-center">
+        Total Price: &#8377;
+        <%= cart && cart.items.length > 0 ? cart.items.reduce((total, item) => total + (item.listing ? item.listing.price * item.quantity : 0), 0) : 0 %>
+    </h4>
+
+    <% if (cart && cart.items.length > 0) { %>
+        <button class="btn btn-success">Proceed to Checkout</button>
+    <% } %>
+</body>

@@ -43,6 +43,19 @@
             <%}%>
             <p>Sizes available : <%=listing.sizes%></p>
           </p>
+          <!-- form  for add a cart -->
+          <form action="/cart/add/<%= listing._id %>" method="POST">
+            <label for="size">Size:</label>
+            <select name="size" required>
+                <% listing.sizes.forEach(size => { %>
+                    <option value="<%= size %>"><%= size %></option>
+                <% }) %>
+            </select>
+            <label for="quantity">Quantity:</label>
+            <input type="number" name="quantity" min="1" value="1" required>
+            <button type="submit" class="btn btn-dark">Add to Cart</button>
+        </form>
+        
         </div>
       </div>
     </div>

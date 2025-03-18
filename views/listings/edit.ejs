@@ -36,20 +36,27 @@
         
         
         <div class="row">
-            <div class="mb-3 col-md-4">
-                <label for="category" class="form-label">Category</label>
-                <input name="listing[category]" value="<%=listing.category%>" type="text" class="form-control" required>
-                <div class="invalid-feedback">
-                    Enter Category
-                  </div>
-            </div>
-            <div class="mb-3 col-md-8">
-                <label for="subCategory" class="form-label">SubCategory</label>
-                <input name="listing[subCategory]" value="<%=listing.subCategory%>" type="text" class="form-control" required>
-                <div class="invalid-feedback">
-                    Enter SubCategory
-                  </div>
-            </div>
+                <!-- Category Selection -->
+                <div class="mb-3 col-md-4">
+                    <label class="form-label">Category</label><br>
+                    <div id="category-buttons">
+                        <button type="button" class="btn category-btn" data-category="Men">Men</button>
+                        <button type="button" class="btn category-btn" data-category="Women">Women</button>
+                    </div>
+                    <input type="hidden" name="listing[category]" id="category-input" value="<%=listing.category%>" required>
+                    <div class="invalid-feedback">Select a category</div>
+                </div>
+           <!-- Subcategory Selection -->
+           <div class="mb-3 col-md-8">
+            <label for="subCategory" class="form-label">SubCategory</label>
+            <select name="listing[subCategory]" class="form-control" required>
+                <option value="Shirt" <%= listing.subCategory === "Shirt" ? "selected" : "" %>>Shirt</option>
+                <option value="Pant" <%= listing.subCategory === "Pant" ? "selected" : "" %>>Pant</option>
+                <option value="T-shirt" <%= listing.subCategory === "T-shirt" ? "selected" : "" %>>T-shirt</option>
+                <option value="Others" <%= listing.subCategory === "Others" ? "selected" : "" %>>Others</option>
+            </select>
+            <div class="invalid-feedback">Select a subcategory</div>
+        </div>
         </div>
        
         <div class="mb-3">
@@ -112,6 +119,32 @@
                     this.classList.remove("btn-outline-dark");
                 }
                 sizeInput.value = JSON.stringify(selectedSizes);
+            });
+        });
+    
+
+
+
+       // Handle Category Selection
+       let selectedCategory = document.getElementById("category-input").value;
+        const categoryButtons = document.querySelectorAll(".category-btn");
+        const categoryInput = document.getElementById("category-input");
+
+        categoryButtons.forEach(button => {
+            let category = button.getAttribute("data-category");
+            
+            // Highlight pre-selected category
+            if (category === selectedCategory) {
+                button.classList.add("btn-dark");
+            } else {
+                button.classList.add("btn-outline-dark");
+            }
+
+            // Toggle selection
+            button.addEventListener("click", function () {
+                categoryButtons.forEach(btn => btn.classList.remove("btn-dark"));
+                this.classList.add("btn-dark");
+                categoryInput.value = category;
             });
         });
     });

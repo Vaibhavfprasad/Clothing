@@ -16,6 +16,13 @@ module.exports.isLoggedIn=(req,res,next)=>{
     next();
 }
 
+module.exports.isAdmin=async (req,res,next)=>{
+    if(!req.user.admin){
+        req.flash("error","Your are Admin of Company.");
+        return res.redirect(`/listings`);
+    }
+    next();
+}
 
 module.exports.saveRedirectUrl=(req, res, next)=>{
     if(req.session.redirectUrl){
