@@ -87,4 +87,12 @@ router.post("/cart/remove/:itemId", isLoggedIn, async (req, res) => {
 });
 
 
+
+// Checkout route
+router.post("/checkout", (req, res) => {
+    req.flash("success", "Order Not Placed Because We Don't Have any Funding."); // Flash message
+    res.redirect("/cart"); // Redirect back to the cart page or order confirmation page
+});
+
+
 module.exports = router;

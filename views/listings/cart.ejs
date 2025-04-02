@@ -48,6 +48,8 @@
     </h4>
 
     <% if (cart && cart.items.length > 0) { %>
+        <form action="/checkout" method="POST">
         <button class="btn btn-success">Proceed to Checkout</button>
+        </form>
     <% } %>
 </body>
