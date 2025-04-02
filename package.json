@@ -1,4 +1,7 @@
 {
+  "engines":{
+    "node": "22.12.0"
+  },
   "name": "project",
   "version": "1.0.0",
   "main": "index.js",
@@ -6,13 +9,14 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "vaibhav",
   "license": "ISC",
   "description": "",
   "dependencies": {
     "axios": "^1.8.3",
     "cloudinary": "^2.5.1",
     "connect-flash": "^0.1.1",
+    "connect-mongo": "^5.1.0",
     "cookie-parser": "^1.4.7",
     "dotenv": "^16.4.7",
     "ejs": "^3.1.10",
