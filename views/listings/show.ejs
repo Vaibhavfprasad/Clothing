@@ -44,16 +44,16 @@
             <p>Sizes available : <%=listing.sizes%></p>
           </p>
           <!-- form  for add a cart -->
-          <form action="/cart/add/<%= listing._id %>" method="POST">
-            <label for="size">Size:</label>
-            <select name="size" required>
+          <form action="/cart/add/<%= listing._id %>" method="POST" novalidate class="needs-validation">
+            <label for="size" class="form-label"><b>Size:</b></label>
+            <select name="size" required class="form-control">
                 <% listing.sizes.forEach(size => { %>
                     <option value="<%= size %>"><%= size %></option>
                 <% }) %>
             </select>
-            <label for="quantity">Quantity:</label>
-            <input type="number" name="quantity" min="1" value="1" required>
-            <button type="submit" class="btn btn-dark">Add to Cart</button>
+            <label for="quantity" class="form-label"><b>Quantity:</b></label>
+            <input type="number" name="quantity" min="1" value="1" required class="form-control">
+            <button type="submit" class="btn btn-dark mt-2">Add to Cart</button>
         </form>
         
         </div>

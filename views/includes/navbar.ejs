@@ -38,11 +38,19 @@
             <button class="btn btn-secondary btn-sm dropdown-toggle all-btn " type="button" data-bs-toggle="dropdown" aria-expanded="false">
               Collections
             </button>
-            <ul class="dropdown-menu">
-              <li><a href="/listings/menscollection">Male</a></li>
-              <li><a href="/listings/womenscollection">Female</a></li>
+            <ul class="dropdown-menu form-select">
+              <li><a class="dropdown-item" href="/listings/menscollection">Male</a></li>
+              <li><a class="dropdown-item" href="/listings/womenscollection">Female</a></li>
             </ul>
           </div>
+          <!-- <select class="form-select" aria-label="Default select example">
+            <option selected>Open this select menu</option>
+            <option value="Male" url="/listings/menscollection">Male</option>
+            <option value="Female" href="">Female</option>
+          </select> -->
+
+
+
           <% if(currUser && currUser.admin==true){%>
             <a class="nav-link" href="/listings/new">add new listing</a>
          <%}%>
