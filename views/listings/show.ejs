@@ -35,13 +35,13 @@
             <p>Owned By : <i><%=listing.owner.username%></i></p>
             <%}%>
             <p><%=listing.description%></p>
-            <p>&#8377;<%=listing.price.toLocaleString("en-IN")%></p>
-            <p><%=listing.category%></p>
-            <p><%=listing.subCategory%></p>
+            <p><b>Price : </b>&#8377;<%=listing.price.toLocaleString("en-IN")%></p>
+            <p><b>Category : </b><%=listing.category%></p>
             <% if(currUser && currUser.admin==true){%>
+            <p><b>SubCategory : </b><%=listing.subCategory%></p>
             <p><%=listing.date%></p>
             <%}%>
-            <p>Sizes available : <%=listing.sizes%></p>
+            <p><b>Sizes available :</b> <%=listing.sizes%></p>
           </p>
           <!-- form  for add a cart -->
           <form action="/cart/add/<%= listing._id %>" method="POST" novalidate class="needs-validation">
