@@ -29,6 +29,35 @@ router.get("/womenscollection",async(req,res)=>{
     res.render("collections/womens.ejs",{allListings});
 });
 
+//For Shirt Collection
+router.get("/shirtcollection",async(req,res)=>{
+    const allListings = await Listing.find({subCategory: "Shirt"});
+    res.render("collections/shirt.ejs",{allListings});
+});
+
+
+
+//For T-Shirt Collection
+router.get("/tshirtcollection",async(req,res)=>{
+    const allListings = await Listing.find({subCategory: "T-Shirt"});
+    res.render("collections/shirt.ejs",{allListings});
+});
+
+
+//For bottom Collection
+router.get("/pantcollection",async(req,res)=>{
+    const allListings = await Listing.find({subCategory: "Pant"});
+    res.render("collections/shirt.ejs",{allListings});
+});
+
+//For others Collection
+router.get("/otherscollection",async(req,res)=>{
+    const allListings = await Listing.find({subCategory: "Others"});
+    res.render("collections/shirt.ejs",{allListings});
+});
+
+
+
 
 //new route
 router.get("/new",isLoggedIn,controllers.renderNewForm);
